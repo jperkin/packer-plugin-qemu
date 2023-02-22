@@ -54,6 +54,12 @@ jobs:
     steps:
       - build-and-persist-plugin-binary:
           GOOS: freebsd
+  build_illumos:
+    executor: golang
+    working_directory: ~/go/src/github.com/hashicorp/packer-plugin-qemu
+    steps:
+      - build-and-persist-plugin-binary:
+          GOOS: illumos
   build_solaris:
     executor: golang
     working_directory: ~/go/src/github.com/hashicorp/packer-plugin-qemu
@@ -90,6 +96,7 @@ workflows:
       - build_freebsd
       - build_linux
       - build_openbsd
+      - build_illumos
       - build_solaris
       - build_windows
       - build_linux_ppc64le
@@ -99,6 +106,7 @@ workflows:
             - build_freebsd
             - build_linux
             - build_openbsd
+            - build_illumos
             - build_solaris
             - build_windows
             - build_linux_ppc64le
